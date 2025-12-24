@@ -1,0 +1,87 @@
+@import "./fonts.css";
+@import "tailwindcss";
+@theme {
+  --color-primary: #14141f;
+  --color-deep: #0a0a0f;
+  --color-accent: #1f1f2e;
+  --color-bg: #14141e66;
+
+  --color-main: #9ca3b0;
+  --color-secondary: #e8e8f0;
+  --color-glow: #e7e7ef;
+
+  --color-green-glow: #00ff87;
+  --color-red-glow: #ff0054;
+  --color-cyan-neon: #00ffff;
+  --color-purple-neon: #bf00ff;
+  --color-border-color: #00ffff26;
+}
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+.custom-container {
+  @apply max-w-[1660px] mx-auto;
+}
+.neon {
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8),
+    0px 0px 20px rgba(0, 255, 255, 0.4);
+}
+.button-active {
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  @apply text-cyan-neon;
+}
+.button-active svg path {
+  stroke: #00ffff;
+  transition: stroke 0.3s ease-in-out;
+}
+.button-inactive:hover {
+  @apply text-glow;
+}
+.button-inactive svg path {
+  stroke: #9ca3af;
+  transition: stroke 0.3s ease-in-out;
+}
+.box-shadow {
+  box-shadow: 0px 8px 32px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  @apply rounded-xl;
+}
+.back {
+  @apply bg-bg  rounded-xl;
+}
+.card {
+  box-shadow: 0px 8px 32px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+}
+.card:hover {
+  border-color: #00ffff4d;
+  box-shadow: 0 8px 32px #0ff3;
+  transition: 0.3s ease-in-out;
+}
+button {
+  cursor: pointer;
+}
+.coin-row {
+  background-color: transparent;
+}
+
+.coin-row:hover {
+  background-color: #1a1a3166;
+  transition: 0.3s ease-in-out;
+}
+
+.coin-row:hover .coin-name-price {
+  color: #00ffff;
+  transition: color 0.3s ease-in-out;
+}
+header {
+  backdrop-filter: blur(12px);
+}
+.input:hover {
+}
