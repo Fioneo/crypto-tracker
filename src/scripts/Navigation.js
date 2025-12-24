@@ -39,10 +39,13 @@ export default class Navigation {
     window.addEventListener("popstate", this.handlePopState.bind(this));
     this.handleInitialLoad();
   }
-
+  scroll() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
   goToDashboard(e) {
     if (e) e.preventDefault();
     history.pushState({ view: "dashboard" }, "", "/");
+    this.scroll();
     this.showDashboard();
   }
 
@@ -50,6 +53,7 @@ export default class Navigation {
     if (e) e.preventDefault();
     history.pushState({ view: "top100" }, "", "/top100");
     this.showTop100();
+    this.scroll();
   }
 
   handleCoinClick(e) {
@@ -60,6 +64,7 @@ export default class Navigation {
     const coinPath = link.getAttribute("href");
 
     history.pushState({ view: "coin-detail" }, "", coinPath);
+    this.scroll();
     this.showCoinDetail();
   }
 

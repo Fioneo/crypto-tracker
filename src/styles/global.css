@@ -83,5 +83,190 @@ button {
 header {
   backdrop-filter: blur(12px);
 }
-.input:hover {
+@layer utilities {
+  header {
+    transform: translateY(-100%);
+    animation: slideDown 0.5s ease-out forwards;
+  }
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(12px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .stats-card {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: cardBounceIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .stats-card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .stats-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .stats-card:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .stats-card:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes cardBounceIn {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .top-coin-item {
+    opacity: 0;
+    transform: translateX(60px);
+    animation: coinSlideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .top-coin-item:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .top-coin-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .top-coin-item:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .top-coin-item:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .top-coin-item:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .top-coin-item:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .top-coin-item:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+  .top-coin-item:nth-child(8) {
+    animation-delay: 0.4s;
+  }
+  .top-coin-item:nth-child(9) {
+    animation-delay: 0.45s;
+  }
+  .top-coin-item:nth-child(10) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes coinSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .market-overview-section {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: marketFadeIn 0.5s ease-out forwards;
+    animation-delay: 0.35s;
+  }
+
+  @keyframes marketFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @layer utilities {
+    .back-button-animate {
+      opacity: 0;
+      transform: translateX(-60px);
+      animation: backButtonSlideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes backButtonSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+  .detail-stats-card,
+  .detail-about-card {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: detailCardBounceIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .detail-stats-card {
+    animation-delay: 0.5s;
+  }
+
+  .detail-about-card {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes detailCardBounceIn {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    60% {
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .search-bar-animate {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: searchBarSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .table-animate {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: searchBarSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .table-animate {
+    animation-delay: 0.2s;
+  }
+  @keyframes searchBarSlideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(+40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

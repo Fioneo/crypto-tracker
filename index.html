@@ -20,10 +20,10 @@
             >
           </div>
           <ul
-            class="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-4"
+            class="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
           >
             <li
-              class="bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
+              class="stats-card bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
             >
               <svg
                 width="40"
@@ -53,7 +53,7 @@
               </div>
             </li>
             <li
-              class="bg-bg flex flex-col p-6 gap-4 rounded-xl card border-cyan-neon"
+              class="stats-card bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
             >
               <svg
                 width="40"
@@ -76,7 +76,7 @@
               </div>
             </li>
             <li
-              class="bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
+              class="stats-card bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
             >
               <svg
                 width="40"
@@ -107,7 +107,7 @@
               </div>
             </li>
             <li
-              class="bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
+              class="stats-card bg-bg p-6 flex flex-col gap-4 rounded-xl card border-cyan-neon"
             >
               <svg
                 width="40"
@@ -152,7 +152,7 @@
               </div>
             </li>
           </ul>
-          <div class="p-6 flex flex-col gap-6 back box-shadow">
+          <div class="p-6 flex flex-col gap-6 back box-shadow market-overview-section">
             <div
               class="flex flex-col gap-2 min-[400px]:justify-between min-[400px]:gap-0 min-[400px]:flex-row text-base"
             >
@@ -250,7 +250,7 @@
             >
               <h3 class="text-glow text-base">Top coins</h3>
               <ul class="flex flex-col gap-3" id="coinTopList">
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -279,7 +279,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -308,7 +308,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -337,7 +337,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -366,7 +366,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -395,7 +395,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -424,7 +424,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -453,7 +453,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -482,7 +482,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -511,7 +511,7 @@
                     </div>
                   </a>
                 </li>
-                <li>
+                <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
                     class="flex p-3 gap-4 items-center rounded-xl cursor-pointer coin-row"
@@ -547,7 +547,7 @@
         <div class="flex flex-col gap-8 hidden" id="coinContainer">
           <button
             type="button"
-            class="text-cyan-neon flex gap-2 items-center backButton"
+            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80 back-button-animate"
           >
             <svg
               width="20"
@@ -581,15 +581,15 @@
             </div>
           </div>
           <ul
-            class="grid grid-cols-1 min-[340px]:grid-cols-2 lg:grid-cols-4 gap-6"
+            class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
           >
-            <li class="p-6 flex flex-col gap-2 box-shadow">
+            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
               <span>Current Price</span>
               <span class="text-cyan-neon neon flex items-center gap-2"
                 >$93 432,00</span
               >
             </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow">
+            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
               <span>24h Change</span>
               <span class="text-green-glow neon flex items-center gap-2">
                 <svg
@@ -617,11 +617,11 @@
                 +1.85%</span
               >
             </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow">
+            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
               <span>Market Cap</span>
               <span class="text-glow flex items-center gap-2">$1.84T</span>
             </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow">
+            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
               <span>24h Volume</span>
               <span class="text-glow">$45.00B</span>
             </li>
@@ -630,7 +630,7 @@
             <h3 class="text-glow"><span>Bitcoin</span> Price - 7 Days</h3>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="p-6 flex flex-col gap-4 box-shadow">
+            <div class="p-6 flex flex-col gap-4 box-shadow detail-stats-card ">
               <span class="text-glow">Market Stats</span>
               <div class="flex flex-col gap-4">
                 <div class="flex justify-between items-center">
@@ -647,7 +647,7 @@
                 </div>
               </div>
             </div>
-            <div class="p-6 flex flex-col gap-4 box-shadow">
+            <div class="p-6 flex flex-col gap-4 box-shadow detail-about-card">
               <h3 class="text-glow">About <span>Bitcoin</span></h3>
               <p>
                 Bitcoin is the first successful internet money based on
@@ -661,7 +661,7 @@
         <div class="flex flex-col gap-8" id="topContainer">
           <button
             type="button"
-            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80"
+            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80 back-button-animate"
           >
             <svg
               width="20"
@@ -693,9 +693,9 @@
               >Explore the top 100 cryptocurrencies by market cap</span
             >
           </div>
-          <div class="p-4 box-shadow">
+          <div class="p-4 box-shadow search-bar-animate">
             <div
-              class="relative focus-within:[&>svg_path]:stroke-cyan-neon focus-within:[&>svg_path]:transition focus-within:[&>svg_path]:duration-300 focus-within:[&>svg_path]:ease-in-out"
+              class="relative focus-within:[&>svg_path]:stroke-cyan-neon/50 focus-within:[&>svg_path]:transition focus-within:[&>svg_path]:duration-300 focus-within:[&>svg_path]:ease-in-out"
             >
               <svg
                 width="20"
@@ -724,12 +724,12 @@
               <input
                 type="text"
                 placeholder="Search cryptocurrencies..."
-                class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 rounded-xl placeholder:text-glow/50 focus:border-cyan-neon focus:outline-none transition-colors bg-[#1a1a3166] border-border-color border duration-300 ease-in-out"
+                class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 rounded-xl placeholder:text-glow/50 focus:border-cyan-neon/50 focus:outline-none transition-colors bg-[#1a1a3166] border-border-color border duration-300 ease-in-out"
                 value=""
               />
             </div>
           </div>
-          <div class="box-shadow rounded-xl overflow-hidden hidden sm:block">
+          <div class="box-shadow rounded-xl overflow-hidden hidden sm:block table-animate">
             <div class="hidden sm:block overflow-x-auto">
               <table class="w-full">
                 <thead class="border-b border-border-color">
