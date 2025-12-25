@@ -1,3 +1,4 @@
+import { RenderTopCoins } from "./RenderTopCoins.js";
 export default class Navigation {
   constructor({
     topLinkId,
@@ -49,9 +50,10 @@ export default class Navigation {
     this.showDashboard();
   }
 
-  goToTop100(e) {
+  async goToTop100(e) {
     if (e) e.preventDefault();
     history.pushState({ view: "top100" }, "", "/top100");
+    await RenderTopCoins();
     this.showTop100();
     this.scroll();
   }
@@ -98,10 +100,11 @@ export default class Navigation {
     if (activeLink) activeLink.classList.add("button-active");
   }
 
-  handlePopState(e) {
+  async handlePopState(e) {
     const state = e.state || { view: "dashboard" };
     switch (state.view) {
       case "top100":
+        await RenderTopCoins();
         this.showTop100();
         break;
       case "coin-detail":
@@ -114,12 +117,13 @@ export default class Navigation {
     }
   }
 
-  handleInitialLoad() {
+  async handleInitialLoad() {
     const path = window.location.pathname;
 
     if (path.startsWith("/coins/")) {
       this.showCoinDetail();
     } else if (path === "/top100") {
+      await RenderTopCoins();
       this.showTop100();
     } else {
       this.showDashboard();

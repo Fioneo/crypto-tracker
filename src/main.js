@@ -1,6 +1,5 @@
 import "./styles/global.css";
 import Navigation from "./scripts/Navigation.js";
-
 new Navigation({
   topLinkId: "topLink",
   dashLinkId: "dashLink",

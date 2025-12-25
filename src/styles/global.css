@@ -16,6 +16,9 @@
   --color-purple-neon: #bf00ff;
   --color-border-color: #00ffff26;
 }
+main {
+  min-height: 100vh;
+}
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -246,27 +249,31 @@ header {
       transform: translateY(0);
     }
   }
-  .search-bar-animate {
-    opacity: 0;
-    transform: translateY(-40px);
-    animation: searchBarSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
+  .search-bar-animate,
   .table-animate {
     opacity: 0;
-    transform: translateY(-40px);
-    animation: searchBarSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(40px);
+    animation: slideUpIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .table-animate {
-    animation-delay: 0.2s;
-  }
-  @keyframes searchBarSlideDown {
+
+  @keyframes slideUpIn {
     0% {
       opacity: 0;
-      transform: translateY(+40px);
+      transform: translateY(40px); /* СНИЗУ ВВЕРХ — НЕ ВЫЛЕЗАЕТ ЗА ЭКРАН */
     }
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  .coin-row {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
     }
   }
 }
