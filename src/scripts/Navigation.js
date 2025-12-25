@@ -1,4 +1,5 @@
 import { RenderTopCoins } from "./RenderTopCoins.js";
+import { RenderCoin } from "./RenderCoin.js";
 export default class Navigation {
   constructor({
     topLinkId,
@@ -18,7 +19,7 @@ export default class Navigation {
     this.topContainer = document.getElementById(topContainerId);
     this.dashContainer = document.getElementById(dashContainerId);
     this.coinsContainer = document.getElementById(coinsContainerId);
-    this.coinsTop = document.getElementById(coinsTopId);
+    this.coinsTop = document.querySelectorAll(coinsTopId);
 
     this.init();
   }
@@ -34,8 +35,9 @@ export default class Navigation {
         this.goToDashboard();
       });
     });
-
-    this.coinsTop?.addEventListener("click", this.handleCoinClick.bind(this));
+    this.coinsTop.forEach((top) => {
+      top.addEventListener("click", this.handleCoinClick.bind(this));
+    });
 
     window.addEventListener("popstate", this.handlePopState.bind(this));
     this.handleInitialLoad();
@@ -58,13 +60,14 @@ export default class Navigation {
     this.scroll();
   }
 
-  handleCoinClick(e) {
+  async handleCoinClick(e) {
     const link = e.target.closest("a");
     if (!link) return;
 
     e.preventDefault();
     const coinPath = link.getAttribute("href");
-
+    const coinName = link.dataset.coinId;
+    await RenderCoin(coinName);
     history.pushState({ view: "coin-detail" }, "", coinPath);
     this.scroll();
     this.showCoinDetail();

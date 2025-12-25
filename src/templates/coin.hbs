@@ -1,0 +1,72 @@
+<div class="flex gap-4 items-center">
+    <img src="{{image.large}}" alt="{{name}} image" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full" />
+    <div class="flex flex-col">
+      <span class="text-glow">{{name}} ({{symbol}})</span>
+      <span>Rank #{{market_cap_rank}}</span>
+    </div>
+  </div>
+
+  <ul class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+    <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
+      <span>Current Price</span>
+      <span class="text-cyan-neon neon flex items-center gap-2">
+        {{price market_data.current_price.usd}}
+      </span>
+    </li>
+
+    <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
+      <span>24h Change</span>
+      <span class="neon flex items-center gap-2 {{changeColor market_data.price_change_percentage_24h}}">
+        <i data-lucide="{{trendIcon market_data.price_change_percentage_24h}}" class="w-3 h-3 sm:w-4 sm:h-4"></i>
+        {{percent market_data.price_change_percentage_24h}}
+      </span>
+    </li>
+
+    <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
+      <span>Market Cap</span>
+      <span class="text-glow flex items-center gap-2">
+        {{bigNumber market_data.market_cap.usd}}
+      </span>
+    </li>
+
+    <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
+      <span>24h Volume</span>
+      <span class="text-glow">
+        {{bigNumber market_data.total_volume.usd}}
+      </span>
+    </li>
+  </ul>
+
+  <div class="flex flex-col gap-6 box-shadow p-6">
+    <h3 class="text-glow"><span>{{name}}</span> Price - 7 Days</h3>
+    <div id="coin-sparkline" class="w-full h-64"></div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
+    <div class="p-6 flex flex-col gap-4 box-shadow detail-stats-card">
+      <span class="text-glow">Market Stats</span>
+      <div class="flex flex-col gap-4">
+        <div class="flex justify-between items-center">
+          <span>All-Time High</span>
+          <span class="text-glow">{{price market_data.ath.usd}}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>All-Time Low</span>
+          <span class="text-glow">{{price market_data.atl.usd}}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>7d Change</span>
+          <span class="{{changeColor market_data.price_change_percentage_7d}}">
+            {{percent market_data.price_change_percentage_7d}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 flex flex-col gap-4 box-shadow detail-about-card">
+      <h3 class="text-glow">About <span>{{name}}</span></h3>
+      <p>
+        {{shortDesc description.en}}
+      </p>
+    </div>
+  </div>

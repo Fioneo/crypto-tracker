@@ -16,14 +16,16 @@ export async function RenderTopCoins() {
     const changeIcon =
       coin.price_change_percentage_24h > 0 ? "trending-up" : "trending-down";
     rowsHTML += ` <tr
-                    class="border-b border-border-color hover:bg-[#1a1a3166] transition-colors coin-row"
+                    class="border-b border-border-color hover:bg-[#1a1a3166] transition-colors coin-row opacity-0  cursor-pointer" 
                   >
                     <td class="p-3 lg:p-4  text-sm">${coin.market_cap_rank}</td>
 
                     <td class="p-3 lg:p-4">
                       <a
                         href="/coins/${coin.id}"
-                        class="flex items-center gap-2 sm:gap-3 group"
+                        class="flex items-center gap-2 sm:gap-3 group " data-coin-id="${
+                          coin.id
+                        }"
                       >
                         <img
                           src="${coin.image}"
@@ -71,8 +73,22 @@ export async function RenderTopCoins() {
   });
   tbody.innerHTML = rowsHTML;
   lucide.createIcons();
-  const rows = tbody.querySelectorAll(".coin-row");
-  rows.forEach((row, index) => {
-    row.style.animationDelay = `${index * 0.05}s`;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const row = entry.target;
+          row.classList.remove("opacity-0");
+          observer.unobserve(row);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px 0px 0px",
+      threshold: 0.1,
+    }
+  );
+  document.querySelectorAll(".coin-row").forEach((row) => {
+    observer.observe(row);
   });
 }

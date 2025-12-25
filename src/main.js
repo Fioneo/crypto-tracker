@@ -8,5 +8,5 @@ new Navigation({
   topContainerId: "topContainer",
   dashContainerId: "dashContainer",
   coinsContainerId: "coinContainer",
-  coinsTopId: "coinTopList",
+  coinsTopId: ".coinTopList",
 });

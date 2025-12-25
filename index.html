@@ -249,7 +249,7 @@
               class="box-shadow flex flex-col gap-3 sm:gap-6 p-3 sm:p-6 lg:order-2 order1"
             >
               <h3 class="text-glow text-base">Top coins</h3>
-              <ul class="flex flex-col gap-3" id="coinTopList">
+              <ul class="flex flex-col gap-3 coinTopList">
                 <li class="top-coin-item">
                   <a
                     href="/coins/bitcoin"
@@ -573,90 +573,7 @@
             </svg>
             Back to Dashboard
           </button>
-          <div class="flex gap-4 items-center">
-            <img src="/images/Bitcoin.png" alt="coin image" />
-            <div class="flex flex-col">
-              <span class="text-glow">Bitcoin (BTC)</span>
-              <span>Rank #1</span>
-            </div>
-          </div>
-          <ul
-            class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
-          >
-            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
-              <span>Current Price</span>
-              <span class="text-cyan-neon neon flex items-center gap-2"
-                >$93 432,00</span
-              >
-            </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
-              <span>24h Change</span>
-              <span class="text-green-glow neon flex items-center gap-2">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13.3333 5.83325H18.3333V10.8333"
-                    stroke="#00FF88"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M18.3334 5.83325L11.2501 12.9166L7.08341 8.74992L1.66675 14.1666"
-                    stroke="#00FF88"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                +1.85%</span
-              >
-            </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
-              <span>Market Cap</span>
-              <span class="text-glow flex items-center gap-2">$1.84T</span>
-            </li>
-            <li class="p-6 flex flex-col gap-2 box-shadow stats-card">
-              <span>24h Volume</span>
-              <span class="text-glow">$45.00B</span>
-            </li>
-          </ul>
-          <div class="flex flex-col gap-6 box-shadow p-6">
-            <h3 class="text-glow"><span>Bitcoin</span> Price - 7 Days</h3>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="p-6 flex flex-col gap-4 box-shadow detail-stats-card ">
-              <span class="text-glow">Market Stats</span>
-              <div class="flex flex-col gap-4">
-                <div class="flex justify-between items-center">
-                  <span>All-Time High</span>
-                  <span class="text-glow">$108 135,00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span>All-Time Low</span>
-                  <span class="text-glow">$67,81</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span>7d Change</span>
-                  <span class="text-green-glow">+4.21%</span>
-                </div>
-              </div>
-            </div>
-            <div class="p-6 flex flex-col gap-4 box-shadow detail-about-card">
-              <h3 class="text-glow">About <span>Bitcoin</span></h3>
-              <p>
-                Bitcoin is the first successful internet money based on
-                peer-to-peer technology; whereby no central bank or authority is
-                involved in the transaction and production of the Bitcoin
-                currency.
-              </p>
-            </div>
-          </div>
+          
         </div>
         <div class="flex flex-col gap-8" id="topContainer">
           <button
@@ -731,7 +648,7 @@
           </div>
           <div class="box-shadow rounded-xl overflow-hidden hidden sm:block table-animate">
             <div class="hidden sm:block overflow-x-auto">
-              <table class="w-full"  id="topTable">
+              <table class="w-full coinTopList "  id="topTable">
                 <thead class="border-b border-border-color">
                   <tr class="text-sm">
                     <th class="text-left p-3 lg:p-4">
