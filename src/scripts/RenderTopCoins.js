@@ -1,10 +1,8 @@
 import { getTopCoins } from "./Api.js";
+import TableManager from "./TableManager.js";
 export async function RenderTopCoins() {
   const tbody = document.querySelector("#topTable tbody");
   const coins = await getTopCoins();
-  if (coins.length === 0) {
-    return;
-  }
   let rowsHTML = "";
 
   coins.forEach((coin) => {
@@ -16,8 +14,15 @@ export async function RenderTopCoins() {
     const changeIcon =
       coin.price_change_percentage_24h > 0 ? "trending-up" : "trending-down";
     rowsHTML += ` <tr
-                    class="border-b border-border-color hover:bg-[#1a1a3166] transition-colors coin-row opacity-0  cursor-pointer" 
-                  >
+                    class="border-b border-border-color hover:bg-[#1a1a3166] transition-colors coin-row opacity-0  cursor-pointer" data-coin-name="${coin.name.toLowerCase()}" data-coin-rank='${
+      coin.market_cap_rank
+    }'
+    data-coin-symbol="${coin.symbol.toLowerCase()}"
+    data-coin-price="${coin.current_price}"
+    data-coin-percent="${changeDisplay}"
+    data-coin-cap="${coin.market_cap}"
+    data-coin-volume="${coin.total_volume}"> 
+                  
                     <td class="p-3 lg:p-4  text-sm">${coin.market_cap_rank}</td>
 
                     <td class="p-3 lg:p-4">
@@ -37,7 +42,7 @@ export async function RenderTopCoins() {
                           <div
                             class="text-glow group-hover:text-cyan-neon transition-colors text-sm"
                           >
-                            ${coin.id}
+                            ${coin.name}
                           </div>
                           <div class="text-muted-foreground text-xs">${coin.symbol.toUpperCase()}</div>
                         </div>
@@ -71,8 +76,6 @@ export async function RenderTopCoins() {
                     </td>
                   </tr>`;
   });
-  tbody.innerHTML = rowsHTML;
-  lucide.createIcons();
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -88,7 +91,12 @@ export async function RenderTopCoins() {
       threshold: 0.1,
     }
   );
-  document.querySelectorAll(".coin-row").forEach((row) => {
-    observer.observe(row);
-  });
+  if (coins.length > 0) {
+    tbody.innerHTML = rowsHTML;
+    lucide.createIcons();
+    new TableManager("tableInput", "topTable");
+    document.querySelectorAll(".coin-row").forEach((row) => {
+      observer.observe(row);
+    });
+  }
 }

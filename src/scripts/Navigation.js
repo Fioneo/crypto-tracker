@@ -29,11 +29,12 @@ export default class Navigation {
     this.dashLink?.addEventListener("click", this.goToDashboard.bind(this));
     this.logoLink?.addEventListener("click", this.goToDashboard.bind(this));
 
-    this.backButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.goToDashboard();
-      });
+    document.addEventListener("click", (e) => {
+      const backBtn = e.target.closest(".backButton");
+      if (!backBtn) return;
+
+      e.preventDefault();
+      this.goToDashboard();
     });
     this.coinsTop.forEach((top) => {
       top.addEventListener("click", this.handleCoinClick.bind(this));
@@ -55,8 +56,8 @@ export default class Navigation {
   async goToTop100(e) {
     if (e) e.preventDefault();
     history.pushState({ view: "top100" }, "", "/top100");
-    await RenderTopCoins();
     this.showTop100();
+    await RenderTopCoins();
     this.scroll();
   }
 
@@ -67,10 +68,10 @@ export default class Navigation {
     e.preventDefault();
     const coinPath = link.getAttribute("href");
     const coinName = link.dataset.coinId;
-    await RenderCoin(coinName);
     history.pushState({ view: "coin-detail" }, "", coinPath);
     this.scroll();
     this.showCoinDetail();
+    await RenderCoin(coinName);
   }
 
   showDashboard() {

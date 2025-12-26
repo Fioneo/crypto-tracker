@@ -545,40 +545,13 @@
           </div>
         </div>
         <div class="flex flex-col gap-8 hidden" id="coinContainer">
-          <button
-            type="button"
-            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80 back-button-animate"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.99996 15.8334L4.16663 10.0001L9.99996 4.16675"
-                stroke="#00FFFF"
-                stroke-width="1.66667"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M15.8333 10H4.16663"
-                stroke="#00FFFF"
-                stroke-width="1.66667"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Back to Dashboard
-          </button>
+      
           
         </div>
         <div class="flex flex-col gap-8" id="topContainer">
           <button
             type="button"
-            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80 back-button-animate"
+            class="text-cyan-neon flex gap-2 items-center backButton hover:text-cyan-neon/80 back-button-animate "
           >
             <svg
               width="20"
@@ -642,7 +615,7 @@
                 type="text"
                 placeholder="Search cryptocurrencies..."
                 class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 rounded-xl placeholder:text-glow/50 focus:border-cyan-neon/50 focus:outline-none transition-colors bg-[#1a1a3166] border-border-color border duration-300 ease-in-out"
-                value=""
+                value="" id="tableInput"
               />
             </div>
           </div>
@@ -651,72 +624,72 @@
               <table class="w-full coinTopList "  id="topTable">
                 <thead class="border-b border-border-color">
                   <tr class="text-sm">
-                    <th class="text-left p-3 lg:p-4">
+                    <th class="text-left p-3 lg:p-4" data-sort="rank" >
                       <button
-                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
+                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors "
                       >
                         #
                         <i
                           data-lucide="arrow-up"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
 
-                    <th class="text-left p-3 lg:p-4">
+                    <th class="text-left p-3 lg:p-4" data-sort="name">
                       <button
-                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
+                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors "
                       >
                         Name
                         <i
                           data-lucide="arrow-up-down"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
-                    <th class="text-right p-3 lg:p-4">
+                    <th class="text-right p-3 lg:p-4" data-sort="price">
                       <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors "
                       >
                         Price
                         <i
                           data-lucide="arrow-up-down"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
 
-                    <th class="text-right p-3 lg:p-4">
+                    <th class="text-right p-3 lg:p-4" data-sort="change24h">
                       <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        class=" flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
                       >
                         24h %
                         <i
                           data-lucide="arrow-up-down"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
-                    <th class="text-right p-3 lg:p-4">
+                    <th class="text-right p-3 lg:p-4" data-sort="marketCap">
                       <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors "
                       >
                         Market Cap
                         <i
                           data-lucide="arrow-up-down"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
 
-                    <th class="text-right p-3 lg:p-4 lg:table-cell">
+                    <th class="text-right p-3 lg:p-4 lg:table-cell" data-sort="volume">
                       <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors "
                       >
                         Volume (24h)
                         <i
                           data-lucide="arrow-up-down"
-                          class="w-4 h-4 opacity-50"
+                          class=" sort-icon w-4 h-4 opacity-50"
                         ></i>
                       </button>
                     </th>
@@ -729,6 +702,7 @@
           </div>
         </div>
       </div>
+      
     </main>
     <script>
       lucide.createIcons();

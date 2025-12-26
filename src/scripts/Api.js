@@ -1,3 +1,4 @@
+import { renderSkeletonRows, renderSkeletonCoin } from "./skeletons.js";
 const API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
 const headers = {
   accept: "application/json",
@@ -13,6 +14,8 @@ export async function getTopCoins() {
       return data;
     }
   }
+  const tbody = document.querySelector("#topTable tbody");
+  tbody.innerHTML = renderSkeletonRows(10);
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&price_change_percentage=24h&sparkline=false`;
   const res = await fetch(url, { headers });
   if (!res.ok) {
@@ -37,6 +40,8 @@ export async function getCoin(coinName) {
       return data;
     }
   }
+  const coinContainer = document.getElementById("coinContainer");
+  coinContainer.innerHTML = renderSkeletonCoin();
   const url = `https://api.coingecko.com/api/v3/coins/${coinName}`;
   const res = await fetch(url, { headers });
   if (!res.ok) {

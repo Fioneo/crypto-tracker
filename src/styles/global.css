@@ -262,9 +262,40 @@ header {
       transform: translateY(0);
     }
   }
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+
+  .animate-pulse-shimmer {
+    background: linear-gradient(90deg, #4b5563 25%, #6b7280 50%, #4b5563 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+
+  .animate-pulse-shimmer {
+    background: linear-gradient(90deg, #4b5563 25%, #6b7280 50%, #4b5563 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+  .skeleton {
+    border-radius: 0.5rem;
+  }
 }
 .coin-row {
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .coin-row.opacity-100 {
