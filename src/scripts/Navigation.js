@@ -1,5 +1,6 @@
 import { RenderTopCoins } from "./RenderTopCoins.js";
 import { RenderCoin } from "./RenderCoin.js";
+import { RenderDashboard } from "./RenderDashboard.js";
 export default class Navigation {
   constructor({
     topLinkId,
@@ -9,7 +10,6 @@ export default class Navigation {
     topContainerId,
     dashContainerId,
     coinsContainerId,
-    coinsTopId,
   }) {
     this.topLink = document.getElementById(topLinkId);
     this.dashLink = document.getElementById(dashLinkId);
@@ -19,7 +19,6 @@ export default class Navigation {
     this.topContainer = document.getElementById(topContainerId);
     this.dashContainer = document.getElementById(dashContainerId);
     this.coinsContainer = document.getElementById(coinsContainerId);
-    this.coinsTop = document.querySelectorAll(coinsTopId);
 
     this.init();
   }
@@ -29,16 +28,15 @@ export default class Navigation {
     this.dashLink?.addEventListener("click", this.goToDashboard.bind(this));
     this.logoLink?.addEventListener("click", this.goToDashboard.bind(this));
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", async (e) => {
       const backBtn = e.target.closest(".backButton");
       if (!backBtn) return;
 
       e.preventDefault();
-      this.goToDashboard();
+      await this.route("dashboard");
     });
-    this.coinsTop.forEach((top) => {
-      top.addEventListener("click", this.handleCoinClick.bind(this));
-    });
+
+    document.addEventListener("click", this.handleCoinClick.bind(this));
 
     window.addEventListener("popstate", this.handlePopState.bind(this));
     this.handleInitialLoad();
@@ -46,31 +44,55 @@ export default class Navigation {
   scroll() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-  goToDashboard(e) {
-    if (e) e.preventDefault();
-    history.pushState({ view: "dashboard" }, "", "/");
+  async route(view, payload) {
+    this.hideAll();
+
+    switch (view) {
+      case "dashboard":
+        this.showDashboard();
+        await RenderDashboard();
+        break;
+
+      case "top100":
+        this.showTop100();
+        await RenderTopCoins();
+        break;
+
+      case "coin-detail":
+        this.showCoinDetail();
+        await RenderCoin(payload);
+        break;
+
+      default:
+        this.showDashboard();
+        await RenderDashboard();
+    }
+  }
+  async goToDashboard(e) {
+    e.preventDefault();
     this.scroll();
-    this.showDashboard();
+    history.pushState({ view: "dashboard" }, "", "/");
+    await this.route("dashboard");
   }
 
   async goToTop100(e) {
-    if (e) e.preventDefault();
-    history.pushState({ view: "top100" }, "", "/top100");
-    this.showTop100();
-    await RenderTopCoins();
+    e.preventDefault();
     this.scroll();
+    history.pushState({ view: "top100" }, "", "/top100");
+    await this.route("top100");
   }
 
   async handleCoinClick(e) {
-    this.scroll();
-    const link = e.target.closest("a");
+    const link = e.target.closest("a[data-coin-id]");
     if (!link) return;
     e.preventDefault();
-    this.showCoinDetail();
-    const coinPath = link.getAttribute("href");
-    const coinName = link.dataset.coinId;
-    history.pushState({ view: "coin-detail" }, "", coinPath);
-    await RenderCoin(coinName);
+    this.scroll();
+    const coinId = link.dataset.coinId;
+    const path = link.getAttribute("href");
+
+    history.pushState({ view: "coin-detail", coinId }, "", path);
+
+    await this.route("coin-detail", coinId);
   }
 
   showDashboard() {
@@ -105,23 +127,7 @@ export default class Navigation {
 
   async handlePopState(e) {
     const state = e.state || { view: "dashboard" };
-    switch (state.view) {
-      case "top100":
-        await RenderTopCoins();
-        this.showTop100();
-        break;
-      case "coin-detail":
-        const coinId = path.split("/")[2];
-        this.coinName = coinId;
-
-        await RenderCoin(coinId);
-        this.showCoinDetail();
-        break;
-      case "dashboard":
-      default:
-        this.showDashboard();
-        break;
-    }
+    await this.route(state.view, state.coinId);
   }
 
   async handleInitialLoad() {
@@ -129,15 +135,11 @@ export default class Navigation {
 
     if (path.startsWith("/coins/")) {
       const coinId = path.split("/")[2];
-      this.coinName = coinId;
-
-      await RenderCoin(coinId);
-      this.showCoinDetail();
+      await this.route("coin-detail", coinId);
     } else if (path === "/top100") {
-      await RenderTopCoins();
-      this.showTop100();
+      await this.route("top100");
     } else {
-      this.showDashboard();
+      await this.route("dashboard");
     }
   }
 }

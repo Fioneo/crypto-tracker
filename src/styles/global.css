@@ -89,7 +89,7 @@ header {
 @layer utilities {
   header {
     transform: translateY(-100%);
-    animation: slideDown 0.5s ease-out forwards;
+    animation: slideDown 0.3s ease-out forwards;
   }
   @keyframes slideDown {
     0% {
@@ -188,8 +188,8 @@ header {
   .market-overview-section {
     opacity: 0;
     transform: translateY(30px);
-    animation: marketFadeIn 0.5s ease-out forwards;
-    animation-delay: 0.35s;
+    animation: marketFadeIn 0.3s ease-out forwards;
+    animation-delay: 0.2s;
   }
 
   @keyframes marketFadeIn {
@@ -252,7 +252,7 @@ header {
   .search-bar-animate,
   .table-animate {
     opacity: 0;
-    transform: translateY(-40px); /* начинает выше */
+    transform: translateY(-40px);
     animation: slideDownIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
@@ -287,4 +287,8 @@ header {
 }
 .skeleton {
   border-radius: 0.5rem;
+}
+.fng-progress-bar {
+  width: 0%;
+  transition: width 0.8s ease-out;
 }

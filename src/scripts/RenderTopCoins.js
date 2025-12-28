@@ -7,6 +7,10 @@ export async function RenderTopCoins() {
 
   coins.forEach((coin) => {
     const changeDisplay = Math.abs(coin.price_change_percentage_24h).toFixed(2);
+    const currentprice =
+      coin.current_price > 0.1
+        ? coin.current_price.toLocaleString()
+        : coin.current_price.toFixed(6).toLocaleString();
     const changeColor =
       coin.price_change_percentage_24h > 0
         ? "text-green-glow"
@@ -50,7 +54,7 @@ export async function RenderTopCoins() {
                     </td>
 
                     <td class="p-3 lg:p-4 text-right text-glow text-sm">
-                      $${coin.current_price.toLocaleString()}
+                      $${currentprice}
                     </td>
 
                     <td class="p-3 lg:p-4 text-right">
