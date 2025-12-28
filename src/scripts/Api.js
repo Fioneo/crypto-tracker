@@ -42,7 +42,7 @@ export async function getCoin(coinName) {
   }
   const coinContainer = document.getElementById("coinContainer");
   coinContainer.innerHTML = renderSkeletonCoin();
-  const url = `https://api.coingecko.com/api/v3/coins/${coinName}`;
+  const url = `https://api.coingecko.com/api/v3/coins/${coinName}?sparkline=true`;
   const res = await fetch(url, { headers });
   if (!res.ok) {
     return [];
@@ -55,5 +55,6 @@ export async function getCoin(coinName) {
       timestamp: Date.now(),
     })
   );
+  console.log(data);
   return data;
 }

@@ -62,15 +62,14 @@ export default class Navigation {
   }
 
   async handleCoinClick(e) {
+    this.scroll();
     const link = e.target.closest("a");
     if (!link) return;
-
     e.preventDefault();
+    this.showCoinDetail();
     const coinPath = link.getAttribute("href");
     const coinName = link.dataset.coinId;
     history.pushState({ view: "coin-detail" }, "", coinPath);
-    this.scroll();
-    this.showCoinDetail();
     await RenderCoin(coinName);
   }
 
@@ -112,6 +111,10 @@ export default class Navigation {
         this.showTop100();
         break;
       case "coin-detail":
+        const coinId = path.split("/")[2];
+        this.coinName = coinId;
+
+        await RenderCoin(coinId);
         this.showCoinDetail();
         break;
       case "dashboard":
@@ -125,6 +128,10 @@ export default class Navigation {
     const path = window.location.pathname;
 
     if (path.startsWith("/coins/")) {
+      const coinId = path.split("/")[2];
+      this.coinName = coinId;
+
+      await RenderCoin(coinId);
       this.showCoinDetail();
     } else if (path === "/top100") {
       await RenderTopCoins();

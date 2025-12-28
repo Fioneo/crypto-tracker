@@ -66,12 +66,14 @@
   </ul>
 
   <div class="flex flex-col gap-6 box-shadow p-6">
-    <h3 class="text-glow"><span>{{name}}</span> Price - 7 Days</h3>
-    <div id="coin-sparkline" class="w-full h-64"></div>
+    <h3 class="text-glow">{{name}} Price - 7 Days</h3>
+  <div class="relative w-full h-64"> 
+    <canvas id="coin-price-chart"></canvas>
+  </div>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
-    <div class="p-6 flex flex-col gap-4 box-shadow detail-stats-card">
+    <div class="p-6 flex flex-col gap-4 box-shadow detail-stats-card ">
       <span class="text-glow">Market Stats</span>
       <div class="flex flex-col gap-4">
         <div class="flex justify-between items-center">
