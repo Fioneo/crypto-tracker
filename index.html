@@ -90,91 +90,95 @@
               />
             </div>
           </div>
-          <div
-            class="box-shadow rounded-xl overflow-hidden hidden sm:block table-animate"
-          >
-            <div class="hidden sm:block overflow-x-auto">
-              <table class="w-full coinTopList" id="topTable">
-                <thead class="border-b border-border-color">
-                  <tr class="text-sm">
-                    <th class="text-left p-3 lg:p-4" data-sort="rank">
-                      <button
-                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
-                      >
-                        #
-                        <i
-                          data-lucide="arrow-up"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
+          <div id="topContainerElements">
+            <div
+              class="box-shadow rounded-xl overflow-hidden  table-animate hidden md:block"
+            >
+              <div class="hidden sm:block overflow-x-auto">
+                <table class="w-full coinTopList" id="topTable">
+                  <thead class="border-b border-border-color">
+                    <tr class="text-sm">
+                      <th class="text-left p-3 lg:p-4" data-sort="rank">
+                        <button
+                          class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
+                        >
+                          #
+                          <i
+                            data-lucide="arrow-up"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
 
-                    <th class="text-left p-3 lg:p-4" data-sort="name">
-                      <button
-                        class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
-                      >
-                        Name
-                        <i
-                          data-lucide="arrow-up-down"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
-                    <th class="text-right p-3 lg:p-4" data-sort="price">
-                      <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
-                      >
-                        Price
-                        <i
-                          data-lucide="arrow-up-down"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
+                      <th class="text-left p-3 lg:p-4" data-sort="name">
+                        <button
+                          class="flex items-center gap-2 hover:text-cyan-neon transition-colors"
+                        >
+                          Name
+                          <i
+                            data-lucide="arrow-up-down"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
+                      <th class="text-right p-3 lg:p-4" data-sort="price">
+                        <button
+                          class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        >
+                          Price
+                          <i
+                            data-lucide="arrow-up-down"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
 
-                    <th class="text-right p-3 lg:p-4" data-sort="change24h">
-                      <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
-                      >
-                        24h %
-                        <i
-                          data-lucide="arrow-up-down"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
-                    <th class="text-right p-3 lg:p-4" data-sort="marketCap">
-                      <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
-                      >
-                        Market Cap
-                        <i
-                          data-lucide="arrow-up-down"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
+                      <th class="text-right p-3 lg:p-4" data-sort="change24h">
+                        <button
+                          class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        >
+                          24h %
+                          <i
+                            data-lucide="arrow-up-down"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
+                      <th class="text-right p-3 lg:p-4" data-sort="marketCap">
+                        <button
+                          class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        >
+                          Market Cap
+                          <i
+                            data-lucide="arrow-up-down"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
 
-                    <th
-                      class="text-right p-3 lg:p-4 lg:table-cell"
-                      data-sort="volume"
-                    >
-                      <button
-                        class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                      <th
+                        class="text-right p-3 lg:p-4 lg:table-cell"
+                        data-sort="volume"
                       >
-                        Volume (24h)
-                        <i
-                          data-lucide="arrow-up-down"
-                          class="sort-icon w-4 h-4 opacity-50"
-                        ></i>
-                      </button>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+                        <button
+                          class="flex items-center gap-2 ml-auto hover:text-cyan-neon transition-colors"
+                        >
+                          Volume (24h)
+                          <i
+                            data-lucide="arrow-up-down"
+                            class="sort-icon w-4 h-4 opacity-50"
+                          ></i>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <ul class="md:block   flex flex-col gap-3" id="topContainerMobile">
+            
+</ul>
         </div>
       </div>
     </main>

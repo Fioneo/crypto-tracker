@@ -55,5 +55,10 @@ export function registerHelpers() {
     return "text-cyan-neon";
   });
 
-  Handlebars.registerHelper("toUpperCase");
+  Handlebars.registerHelper("shortCoinName", function (name) {
+    if (!name) return "";
+    const words = name.split(" ");
+    const firstWords = words.slice(0, 3);
+    return firstWords.join(" ");
+  });
 }

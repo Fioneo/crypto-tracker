@@ -1,7 +1,13 @@
 import { getTopCoins } from "./Api.js";
 import TableManager from "./TableManager.js";
+import topCoinsMobile from "../templates/topCoinsMobile.hbs?raw";
+import { registerHelpers } from "./Handlebars-helper.js";
+import Handlebars from "handlebars";
+registerHelpers();
+const template = Handlebars.compile(topCoinsMobile);
 export async function RenderTopCoins() {
   const tbody = document.querySelector("#topTable tbody");
+  const topContainerMobile = document.getElementById("topContainerMobile");
   const coins = await getTopCoins();
   let rowsHTML = "";
 
@@ -80,6 +86,8 @@ export async function RenderTopCoins() {
                     </td>
                   </tr>`;
   });
+  const mobileHtml = template({ coins });
+  topContainerMobile.innerHTML = mobileHtml;
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

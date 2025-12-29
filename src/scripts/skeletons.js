@@ -102,14 +102,11 @@ export function renderSkeletonCoin() {
 export function renderSkeletonDashboard() {
   return `
 <div class="flex flex-col gap-6 skeleton">
-
-  <!-- HEADER -->
-  <div class="flex flex-col gap-2">
+ <div class="flex flex-col gap-2">
     <div class="h-5 w-36 rounded animate-pulse-shimmer"></div>
     <div class="h-4 w-64 rounded animate-pulse-shimmer"></div>
   </div>
 
-  <!-- STATS -->
   <ul class="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
     <li class=" bg-bg p-6 flex flex-col gap-4 rounded-xl">
       <div class="w-10 h-10 rounded-full animate-pulse-shimmer"></div>
@@ -144,7 +141,6 @@ export function renderSkeletonDashboard() {
     </li>
   </ul>
 
-  <!-- MARKET OVERVIEW -->
   <div class="p-6 flex flex-col gap-6 box-shadow">
     <div class="flex justify-between">
       <div class="h-4 w-40 rounded animate-pulse-shimmer"></div>
@@ -180,16 +176,15 @@ export function renderSkeletonDashboard() {
     </div>
   </div>
 
-  <!-- CHART + TOP COINS -->
+
   <div class="grid lg:grid-cols-[3fr_2fr] gap-6">
 
-    <!-- CHART -->
+
     <div class="box-shadow p-6 flex flex-col gap-4">
       <div class="h-4 w-40 rounded animate-pulse-shimmer"></div>
       <div class="h-64 rounded-xl animate-pulse-shimmer"></div>
     </div>
 
-    <!-- TOP COINS -->
     <div class="box-shadow p-6 flex flex-col gap-4">
       <div class="h-4 w-32 rounded animate-pulse-shimmer"></div>
 
@@ -233,5 +228,227 @@ export function renderSkeletonDashboard() {
   </div>
 </div>
 
+    `;
+}
+export function renderSkeletonList() {
+  return `
+ <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1 flex-col gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+   <li class="mobileEl bg-bg  p-3 rounded-xl ">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-4 bg-gray-600 rounded animate-pulse-shimmer"></span> 
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-600 animate-pulse-shimmer"></div> 
+        <div class="flex-1  gap-1">
+          <div class="max-w-[100px] h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-1/4 h-3 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="w-12 h-4 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+      </div>
+      <div class="flex justify-between items-center gap-3 text-sm">
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+        <div class="flex flex-col gap-1 w-1/3">
+          <div class="w-full h-3 bg-gray-600 rounded animate-pulse-shimmer"></div> 
+          <div class="w-full h-4 bg-gray-500 rounded animate-pulse-shimmer"></div> 
+        </div>
+      </div>
+    </div>
+  </li>
+  
+  
     `;
 }

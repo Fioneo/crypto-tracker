@@ -28,6 +28,7 @@ export default class TableManager {
     if (defaultTh) {
       this.updateSortIndicators(defaultTh);
     }
+    this.isMobile = () => window.innerWidth < 768;
   }
   onInput(e) {
     const inputvalue = e.target.value.trim().toLowerCase();
@@ -38,9 +39,23 @@ export default class TableManager {
       url.searchParams.delete("search");
     }
     history.replaceState({ view: "top100" }, "", url);
-    if (!inputvalue) {
-      this.showRows(this.originalRows);
-      return;
+
+    if (this.isMobile()) {
+      const mobileRows = Array.from(document.querySelectorAll(".mobileEl"));
+      mobileRows.forEach((row) => row.classList.add("hidden"));
+
+      const filteredRows = mobileRows.filter((row) => {
+        const rowName = row.dataset.coinName.toLowerCase();
+        const coinSymbol = row.dataset.coinSymbol.toLowerCase();
+        return rowName.includes(inputvalue) || coinSymbol.includes(inputvalue);
+      });
+
+      filteredRows.forEach((row) => row.classList.remove("hidden"));
+    } else {
+      if (!inputvalue) {
+        this.showRows(mobileRows);
+        return;
+      }
     }
     const filteredInputRows = this.originalRows.filter((row) => {
       const rowName = row.dataset.coinName.toLowerCase();

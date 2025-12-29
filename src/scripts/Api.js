@@ -2,6 +2,7 @@ import {
   renderSkeletonRows,
   renderSkeletonCoin,
   renderSkeletonDashboard,
+  renderSkeletonList,
 } from "./skeletons.js";
 const API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
 const headers = {
@@ -11,10 +12,12 @@ const headers = {
 const coinContainer = document.getElementById("coinContainer");
 const dashContainer = document.getElementById("dashContainer");
 const tbody = document.querySelector("#topTable tbody");
+const topContainerMobile = document.getElementById("topContainerMobile");
 const CACHE_KEY_DASHBOARD = "dashboard_data";
 const CACHE_KEY = "top100_coins";
 const CACHE_DURATION = 60 * 3000;
 export async function getTopCoins() {
+  const isMobile = () => window.innerWidth < 768;
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
     const { data, timestamp } = JSON.parse(cached);
@@ -22,7 +25,16 @@ export async function getTopCoins() {
       return data;
     }
   }
-  tbody.innerHTML = renderSkeletonRows(10);
+  if (isMobile()) {
+    topContainerMobile.innerHTML = renderSkeletonList();
+  } else {
+    tbody.innerHTML = renderSkeletonRows(10);
+  }
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 5000);
+  });
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&price_change_percentage=24h&sparkline=false`;
   const res = await fetch(url, { headers });
   if (!res.ok) {
