@@ -33,7 +33,8 @@ export default class Navigation {
       if (!backBtn) return;
 
       e.preventDefault();
-      await this.route("dashboard");
+      console.log("возвращение");
+      await this.goToDashboard(e);
     });
 
     document.addEventListener("click", this.handleCoinClick.bind(this));
