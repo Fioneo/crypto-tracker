@@ -224,8 +224,8 @@ header {
   .detail-stats-card,
   .detail-about-card {
     opacity: 0;
-    transform: translateY(40px);
-    animation: detailCardBounceIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(-20px);
+    animation: detailCardBounceIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   .detail-stats-card {
@@ -237,14 +237,7 @@ header {
   }
 
   @keyframes detailCardBounceIn {
-    0% {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    60% {
-      transform: translateY(-2px);
-    }
-    100% {
+    to {
       opacity: 1;
       transform: translateY(0);
     }

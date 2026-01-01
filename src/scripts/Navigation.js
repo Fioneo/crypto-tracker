@@ -33,7 +33,6 @@ export default class Navigation {
       if (!backBtn) return;
 
       e.preventDefault();
-      console.log("возвращение");
       await this.goToDashboard(e);
     });
 

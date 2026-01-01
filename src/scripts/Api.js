@@ -4,6 +4,7 @@ import {
   renderSkeletonDashboard,
   renderSkeletonList,
 } from "./skeletons.js";
+import { apiFetch } from "./apiFetch.js";
 const API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
 const headers = {
   accept: "application/json",
@@ -73,72 +74,80 @@ export async function getCoin(coinName) {
 export async function loadDashboardData() {
   const cached = localStorage.getItem(CACHE_KEY_DASHBOARD);
   if (cached) {
-    const { global, fng, top10, solana, gainerslosers, timestamp } =
-      JSON.parse(cached);
-    if (Date.now() - timestamp < CACHE_DURATION) {
-      return { global, fng, top10, solana, gainerslosers };
+    const data = JSON.parse(cached);
+    if (Date.now() - data.timestamp < CACHE_DURATION) {
+      return data;
     }
   }
+
   dashContainer.innerHTML = renderSkeletonDashboard();
-  const [globalRes, fngRes, top10Res, solanaRes] = await Promise.all([
-    fetch("https://api.coingecko.com/api/v3/global", { headers }),
-    fetch("https://api.alternative.me/fng/?limit=1"),
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true",
-      { headers }
-    ),
-    fetch("https://api.coingecko.com/api/v3/coins/solana?sparkline=true", {
-      headers,
-    }),
-  ]);
+
+  const globalRes = await apiFetch("https://api.coingecko.com/api/v3/global", {
+    headers,
+  });
+
+  const fngRes = await apiFetch("https://api.alternative.me/fng/?limit=1");
+
+  const top10Res = await apiFetch(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true",
+    { headers }
+  );
+
+  const solanaRes = await apiFetch(
+    "https://api.coingecko.com/api/v3/coins/solana?sparkline=true",
+    { headers }
+  );
+
   if (!globalRes.ok || !fngRes.ok || !top10Res.ok || !solanaRes.ok) {
-    return null;
+    throw new Error("API limit");
   }
 
   const globalJson = await globalRes.json();
   const fngJson = await fngRes.json();
   const top10Json = await top10Res.json();
   const solanaPrice = await solanaRes.json();
-  const gainersLosers = await getGainersLosers();
+
+  const gainerslosers = await getGainersLosers();
+
   const dashboardData = {
     global: globalJson.data,
     fng: fngJson.data[0],
     top10: top10Json,
     solana: solanaPrice,
-    gainerslosers: gainersLosers,
+    gainerslosers,
     timestamp: Date.now(),
   };
+
   localStorage.setItem(CACHE_KEY_DASHBOARD, JSON.stringify(dashboardData));
+
   return dashboardData;
 }
 async function getGainersLosers() {
   const pages = 4;
+  const allCoins = [];
 
-  const requests = Array.from({ length: pages }, (_, i) =>
-    fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${
-        i + 1
-      }&price_change_percentage=24h`,
+  for (let i = 1; i <= pages; i++) {
+    const res = await apiFetch(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${i}&price_change_percentage=24h`,
       { headers }
-    )
-  );
+    );
 
-  const responses = await Promise.all(requests);
+    if (!res.ok) break;
 
-  const coinsArrays = await Promise.all(
-    responses.map(async (res) => (res.ok ? res.json() : []))
-  );
+    const coins = await res.json();
+    allCoins.push(...coins);
+  }
 
-  const allCoins = coinsArrays.flat();
+  let gainers = 0;
+  let losers = 0;
 
-  const { gainers, losers } = allCoins.reduce(
-    (acc, coin) => {
-      if (coin.price_change_percentage_24h > 0) acc.gainers++;
-      else if (coin.price_change_percentage_24h < 0) acc.losers++;
-      return acc;
-    },
-    { gainers: 0, losers: 0 }
-  );
+  for (const coin of allCoins) {
+    if (coin.price_change_percentage_24h > 0) gainers++;
+    else if (coin.price_change_percentage_24h < 0) losers++;
+  }
 
-  return { gainers, losers, total: gainers + losers };
+  return {
+    gainers,
+    losers,
+  };
 }
