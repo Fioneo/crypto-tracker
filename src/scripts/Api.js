@@ -4,7 +4,7 @@ import {
   renderSkeletonDashboard,
   renderSkeletonList,
 } from "./skeletons.js";
-import { apiFetch } from "./apiFetch.js";
+import { apiFetch } from "./ApiFetch.js";
 const API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
 const headers = {
   accept: "application/json",
