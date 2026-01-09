@@ -23,8 +23,7 @@ export function registerHelpers() {
 
   Handlebars.registerHelper("percent", function (value) {
     if (!value || isNaN(value)) return "0.00%";
-    const sign = value > 0 ? "+" : "";
-    return sign + Math.abs(value).toFixed(2) + "%";
+    return Math.abs(value).toFixed(2) + "%";
   });
 
   Handlebars.registerHelper("changeColor", function (value) {
@@ -49,8 +48,8 @@ export function registerHelpers() {
 
   Handlebars.registerHelper("fngClass", function (value) {
     if (value <= 25) return "text-red-glow";
-    if (value <= 45) return "text-orange-glow";
-    if (value <= 55) return "text-yellow-glow";
+    if (value <= 45) return "text-orange-400";
+    if (value <= 55) return " text-yellow-500";
     if (value <= 75) return "text-green-glow";
     return "text-cyan-neon";
   });

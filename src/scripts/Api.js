@@ -6,10 +6,31 @@ import {
 } from "./skeletons.js";
 import { apiFetch } from "./ApiFetch.js";
 const API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
-const headers = {
-  accept: "application/json",
-  "x-cg-demo-api-key": API_KEY,
-};
+const SEND_KEY_IN_CLIENT = import.meta.env.VITE_SEND_KEY_IN_CLIENT === "true";
+
+function getHeaders() {
+  const h = { accept: "application/json" };
+  if (API_KEY && SEND_KEY_IN_CLIENT) {
+    h["x-cg-demo-api-key"] = API_KEY;
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname.includes("localhost")
+    ) {
+    }
+  } else if (API_KEY && !SEND_KEY_IN_CLIENT) {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname.includes("localhost")
+    ) {
+    }
+  }
+  if (
+    typeof window !== "undefined" &&
+    window.location.hostname.includes("localhost")
+  ) {
+  }
+  return h;
+}
 const coinContainer = document.getElementById("coinContainer");
 const dashContainer = document.getElementById("dashContainer");
 const tbody = document.querySelector("#topTable tbody");
@@ -17,6 +38,13 @@ const topContainerMobile = document.getElementById("topContainerMobile");
 const CACHE_KEY_DASHBOARD = "dashboard_data";
 const CACHE_KEY = "top100_coins";
 const CACHE_DURATION = 60 * 3000;
+
+function proxiedUrl(url) {
+  if (url.startsWith("https://api.coingecko.com")) {
+    return url.replace("https://api.coingecko.com", "/api/coingecko");
+  }
+  return url;
+}
 export async function getTopCoins() {
   const isMobile = () => window.innerWidth < 768;
   const cached = localStorage.getItem(CACHE_KEY);
@@ -32,7 +60,7 @@ export async function getTopCoins() {
     tbody.innerHTML = renderSkeletonRows(10);
   }
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&price_change_percentage=24h&sparkline=false`;
-  const res = await fetch(url, { headers });
+  const res = await fetch(proxiedUrl(url), { headers: getHeaders() });
   if (!res.ok) {
     return [];
   }
@@ -57,7 +85,7 @@ export async function getCoin(coinName) {
   }
   coinContainer.innerHTML = renderSkeletonCoin();
   const url = `https://api.coingecko.com/api/v3/coins/${coinName}?sparkline=true`;
-  const res = await fetch(url, { headers });
+  const res = await fetch(proxiedUrl(url), { headers: getHeaders() });
   if (!res.ok) {
     return [];
   }
@@ -82,20 +110,29 @@ export async function loadDashboardData() {
 
   dashContainer.innerHTML = renderSkeletonDashboard();
 
-  const globalRes = await apiFetch("https://api.coingecko.com/api/v3/global", {
-    headers,
-  });
+  const globalRes = await apiFetch(
+    proxiedUrl("https://api.coingecko.com/api/v3/global"),
+    {
+      headers: getHeaders(),
+    }
+  );
 
   const fngRes = await apiFetch("https://api.alternative.me/fng/?limit=1");
 
   const top10Res = await apiFetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true",
-    { headers }
+    proxiedUrl(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true"
+    ),
+    {
+      headers: getHeaders(),
+    }
   );
 
   const solanaRes = await apiFetch(
-    "https://api.coingecko.com/api/v3/coins/solana?sparkline=true",
-    { headers }
+    proxiedUrl("https://api.coingecko.com/api/v3/coins/solana?sparkline=true"),
+    {
+      headers: getHeaders(),
+    }
   );
 
   if (!globalRes.ok || !fngRes.ok || !top10Res.ok || !solanaRes.ok) {
@@ -123,13 +160,17 @@ export async function loadDashboardData() {
   return dashboardData;
 }
 async function getGainersLosers() {
-  const pages = 4;
+  const pages = 2;
   const allCoins = [];
 
   for (let i = 1; i <= pages; i++) {
     const res = await apiFetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${i}&price_change_percentage=24h`,
-      { headers }
+      proxiedUrl(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${i}&price_change_percentage=24h`
+      ),
+      {
+        headers: getHeaders(),
+      }
     );
 
     if (!res.ok) break;

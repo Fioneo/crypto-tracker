@@ -1,5 +1,5 @@
-const MAX_CONCURRENT = 3;
-const DELAY = 100;
+const MAX_CONCURRENT = 2;
+const DELAY = 300;
 
 let active = 0;
 const queue = [];
