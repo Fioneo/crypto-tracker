@@ -1,7 +1,5 @@
 # 🚀 CryptoTracker – Real-Time Cryptocurrency Tracker
 
-**Live Demo:** https://crypto-tracker-spa.vercel.app/
-
 A modern, fast, and beautiful **single-page cryptocurrency tracker** built with pure Vanilla JavaScript and modern tooling.
 
 ---
