@@ -176,13 +176,6 @@ export default defineConfig(({ command }) => {
     server: {
       fs: { allow: ["."] },
       watch: { usePolling: true },
-      proxy: {
-        "/api/coingecko": {
-          target: "https://api.coingecko.com",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api\/coingecko/, ""),
-        },
-      },
     },
 
     build: {

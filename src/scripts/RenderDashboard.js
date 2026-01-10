@@ -1,4 +1,4 @@
-import { loadDashboardData } from "./Api.js";
+import { loadDashboardData } from "./Api";
 import dashboardTemplate from "../templates/dashboard.hbs?raw";
 import Handlebars from "handlebars";
 import { registerHelpers } from "./Handlebars-helper.js";
