@@ -42,7 +42,7 @@ export async function getTopCoins() {
     JSON.stringify({
       data,
       timestamp: Date.now(),
-    })
+    }),
   );
   return data;
 }
@@ -67,7 +67,7 @@ export async function getCoin(coinName) {
     JSON.stringify({
       data,
       timestamp: Date.now(),
-    })
+    }),
   );
   return data;
 }
@@ -82,38 +82,29 @@ export async function loadDashboardData() {
 
   dashContainer.innerHTML = renderSkeletonDashboard();
 
-  const globalRes = await apiFetch("https://api.coingecko.com/api/v3/global", {
-    headers,
-  });
-
-  const fngRes = await apiFetch("https://api.alternative.me/fng/?limit=1");
-
-  const top10Res = await apiFetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true",
-    { headers }
-  );
-
-  const solanaRes = await apiFetch(
-    "https://api.coingecko.com/api/v3/coins/solana?sparkline=true",
-    { headers }
-  );
+  const [globalRes, fngRes, top10Res, solanaRes, gainerslosers] =
+    await Promise.all([
+      apiFetch("https://api.coingecko.com/api/v3/global", { headers }),
+      apiFetch("https://api.alternative.me/fng/?limit=1"),
+      apiFetch(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true",
+        { headers },
+      ),
+      apiFetch("https://api.coingecko.com/api/v3/coins/solana?sparkline=true", {
+        headers,
+      }),
+      getGainersLosers(),
+    ]);
 
   if (!globalRes.ok || !fngRes.ok || !top10Res.ok || !solanaRes.ok) {
     throw new Error("API limit");
   }
 
-  const globalJson = await globalRes.json();
-  const fngJson = await fngRes.json();
-  const top10Json = await top10Res.json();
-  const solanaPrice = await solanaRes.json();
-
-  const gainerslosers = await getGainersLosers();
-
   const dashboardData = {
-    global: globalJson.data,
-    fng: fngJson.data[0],
-    top10: top10Json,
-    solana: solanaPrice,
+    global: (await globalRes.json()).data,
+    fng: (await fngRes.json()).data[0],
+    top10: await top10Res.json(),
+    solana: await solanaRes.json(),
     gainerslosers,
     timestamp: Date.now(),
   };
@@ -123,31 +114,35 @@ export async function loadDashboardData() {
   return dashboardData;
 }
 async function getGainersLosers() {
-  const pages = 4;
-  const allCoins = [];
+  const res = await apiFetch(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&price_change_percentage=24h",
+    { headers },
+  );
 
-  for (let i = 1; i <= pages; i++) {
-    const res = await apiFetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${i}&price_change_percentage=24h`,
-      { headers }
-    );
-
-    if (!res.ok) break;
-
-    const coins = await res.json();
-    allCoins.push(...coins);
+  if (!res.ok) {
+    throw new Error("Market sentiment fetch failed");
   }
+
+  const coins = await res.json();
 
   let gainers = 0;
   let losers = 0;
+  let total = 0;
 
-  for (const coin of allCoins) {
-    if (coin.price_change_percentage_24h > 0) gainers++;
-    else if (coin.price_change_percentage_24h < 0) losers++;
+  for (const coin of coins) {
+    const v = coin.price_change_percentage_24h;
+    if (typeof v !== "number") continue;
+
+    total++;
+    if (v > 0) gainers++;
+    else if (v < 0) losers++;
   }
 
   return {
     gainers,
     losers,
+    total,
+    upPercent: total ? Math.round((gainers / total) * 100) : 0,
+    downPercent: total ? Math.round((losers / total) * 100) : 0,
   };
 }
