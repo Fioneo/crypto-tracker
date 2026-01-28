@@ -23,8 +23,7 @@ export function registerHelpers() {
 
   Handlebars.registerHelper("percent", function (value) {
     if (!value || isNaN(value)) return "0.00%";
-    const sign = value > 0 ? "+" : "";
-    return sign + Math.abs(value).toFixed(2) + "%";
+    return Math.abs(value).toFixed(2) + "%";
   });
 
   Handlebars.registerHelper("changeColor", function (value) {
